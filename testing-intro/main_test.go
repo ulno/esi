@@ -4,19 +4,20 @@ package main
 
 import (
 	"encoding/json"
+	"github.com/ulno/esi/testing-intro/article"
 	"testing"
 )
 
 func TestAddNewArticle(t *testing.T) {
-	testArticle := Article{
+	testArticle := article.Article{
 		ID:     "42",
 		Title:  "ulno.net",
 		Author: "Ulno",
 		Link:   "http://ulno.net",
 	}
-	AddNewArticle(testArticle)
-	findArticleJSON := GenSingleArticle("42")
-	findArticle := Article{}
+	articleRepository.AddNewArticle(&testArticle)
+	findArticleJSON := articleRepository.GenSingleArticle("42")
+	findArticle := article.Article{}
 	json.Unmarshal(findArticleJSON, &findArticle)
 	if findArticle != testArticle {
 		t.Error("Couldn't find article after adding.")
