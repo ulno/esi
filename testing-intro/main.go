@@ -104,28 +104,35 @@ func returnAllArticles(w http.ResponseWriter, r *http.Request) {
 
 func handleRequests() {
 	myRouter := mux.NewRouter().StrictSlash(true)
-	myRouter.HandleFunc("/", homePage)
-	myRouter.HandleFunc("/articles", returnAllArticles)
-	myRouter.HandleFunc("/article", createNewArticle).Methods("POST")
-	myRouter.HandleFunc("/article/{id}", deleteArticle).Methods("DELETE")
-	myRouter.HandleFunc("/article/{id}", returnSingleArticle)
-	log.Fatal(http.ListenAndServe(":8000", myRouter))
+	myRouter.HandleFunc("/", homePage).Methods(http.MethodGet)
+	myRouter.HandleFunc("/articles", returnAllArticles).Methods(http.MethodGet)
+	myRouter.HandleFunc("/article", createNewArticle).Methods(http.MethodPost)
+	myRouter.HandleFunc("/article/{id}", deleteArticle).Methods(http.MethodDelete)
+	myRouter.HandleFunc("/article/{id}", returnSingleArticle).Methods(http.MethodGet)
+	log.Fatal(http.ListenAndServe(":8080", myRouter))
 }
 
 func main() {
 	articles = []Article{
-		{ID: "1",
+		{
+			ID:     "1",
 			Title:  "Python Intermediate and Advanced 101",
 			Author: "Arkaprabha Majumdar",
-			Link:   "https://www.amazon.com/dp/B089KVK23P"},
-		{ID: "2",
+			Link:   "https://www.amazon.com/dp/B089KVK23P",
+		},
+		{
+			ID:     "2",
 			Title:  "R programming Advanced",
 			Author: "Arkaprabha Majumdar",
-			Link:   "https://www.amazon.com/dp/B089WH12CR"},
-		{ID: "3",
+			Link:   "https://www.amazon.com/dp/B089WH12CR",
+		},
+
+		{
+			ID:     "3",
 			Title:  "R programming Fundamentals",
 			Author: "Arkaprabha Majumdar",
-			Link:   "https://www.amazon.com/dp/B089S58WWG"},
+			Link:   "https://www.amazon.com/dp/B089S58WWG",
+		},
 	}
 	handleRequests()
 }

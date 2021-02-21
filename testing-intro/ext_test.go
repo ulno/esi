@@ -18,12 +18,12 @@ func TestAddExtNewArticle(t *testing.T) {
 		Link:   "http://ulno.net",
 	}
 	articleJSON, _ := json.Marshal(testArticle)
-	resp, err := http.Post("http://localhost:8000/article", "", bytes.NewBuffer(articleJSON))
+	resp, err := http.Post("http://localhost:8080/article", "", bytes.NewBuffer(articleJSON))
 	if err != nil {
 		t.Error("Problem adding new article via REST:", err)
 		return
 	}
-	resp, err = http.Get("http://localhost:8000/article/42")
+	resp, err = http.Get("http://localhost:8080/article/42")
 	if err != nil {
 		t.Error("Problem reading article via REST.")
 		return
