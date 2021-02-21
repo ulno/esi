@@ -1,4 +1,4 @@
-Commands to test with curl:
+Commands to test manually with curl:
 ```bash
 # get homepage
 curl http://localhost:8000
@@ -17,3 +17,5 @@ http://localhost:8000/article
 # delete article with index 2
 curl -X DELETE http://localhost:8000/article/2
 ```
+
+Run tests with `go test ./... -count=1`

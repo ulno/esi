@@ -8,13 +8,15 @@ import (
 )
 
 func TestAddNewArticle(t *testing.T) {
-	testArticle := Article{ID: "42",
+	testArticle := Article{
+		ID:     "42",
 		Title:  "ulno.net",
 		Author: "Ulno",
-		Link:   "http://ulno.net"}
+		Link:   "http://ulno.net",
+	}
 	AddNewArticle(testArticle)
 	findArticleJSON := GenSingleArticle("42")
-	var findArticle Article
+	findArticle := Article{}
 	json.Unmarshal(findArticleJSON, &findArticle)
 	if findArticle != testArticle {
 		t.Error("Couldn't find article after adding.")
