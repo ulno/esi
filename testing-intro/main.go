@@ -12,14 +12,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// // no idea, why this is bad style - question to Alex -> moved article to repository?
-// type Article struct {
-	// ID     string `json:"Id"`
-	// Title  string `json:"Title"`
-	// Author string `json:"author"`
-	// Link   string `json:"link"`
-//}
-
 var articles = []*article.Article{
 	{
 		ID:     "1",
