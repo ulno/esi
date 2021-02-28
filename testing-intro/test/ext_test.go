@@ -1,17 +1,18 @@
 // Example based on Rest and unit testing in https://golangdocs.com/
 
-package main
+package test
 
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/ulno/esi/testing-intro/article"
 	"io/ioutil"
 	"net/http"
 	"testing"
 )
 
 func TestAddExtNewArticle(t *testing.T) {
-	testArticle := Article{
+	testArticle := article.Article{
 		ID:     "42",
 		Title:  "ulno.net",
 		Author: "Ulno",
@@ -29,7 +30,7 @@ func TestAddExtNewArticle(t *testing.T) {
 		return
 	}
 	findArticleJSON, _ := ioutil.ReadAll(resp.Body)
-	findArticle := Article{}
+	findArticle := article.Article{}
 	json.Unmarshal(findArticleJSON, &findArticle)
 	if findArticle != testArticle {
 		t.Error("Couldn't find or parse article after adding via REST.")
