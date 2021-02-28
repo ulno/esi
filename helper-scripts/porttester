@@ -1,0 +1,13 @@
+#!/bin/bash
+# small port tester to return somethign for curl or a browser on a specific port as html
+# $1: port
+# $2: message
+#
+# inspired from this: https://github.com/craSH/socat/blob/master/EXAMPLES
+# make sure socat is installed
+#
+PORT="$1"
+shift
+MESSAGE="$@"
+socat -T 1 -d -d tcp-l:"$PORT",reuseaddr,fork,crlf \
+	system:"/bin/echo -e \"\\\"HTTP/1.0 200 OK\\\nDocumentType: text/html\\\n\\\n$MESSAGE\\\"\""

@@ -1,0 +1,19 @@
+#!/bin/bash
+# reflect local ssh port on a server outside
+# (put this script in bin folder)
+#
+# call this script by adding the follwing lines (without # signs) to end of crontab
+# edit crontab with crontab -e
+#
+# SHELL=/bin/bash
+# @reboot /home/ubuntu/bin/port_reflection_hetzner
+#
+
+# machine to reflect to
+EXT_HOST=135.181.156.244
+# username of restricted user to do portreflection as - on external host
+EXT_USER=portforwardhelper
+
+autossh -M "$EXT_HOST" -C \
+	-p 4422 -l "$EXT_USER" -R 22220:localhost:22 -N \
+	&> /dev/null < /dev/null &

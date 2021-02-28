@@ -1,0 +1,4 @@
+#!/bin/bash
+MY_PATH=`dirname "$0"`
+cd "$MY_PATH"
+./sshhetzner -t ssh -p 22220 ubuntu@localhost -X "$@"

@@ -1,0 +1,2 @@
+#!/bin/bash
+mosh --ssh="ssh -p 4422" root@135.181.156.244

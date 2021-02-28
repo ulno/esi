@@ -12,7 +12,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// Article ...
+// Article ...``
 type Article struct {
 	ID     string `json:"Id"`
 	Title  string `json:"Title"`
